@@ -1,0 +1,54 @@
+paths:
+  /api/articles:
+    get:
+      summary: 'Get all article data'
+      tags:
+        - api
+      responses:
+        200:
+          description: 'Object with key "articles" that has an array as value, which contains an object for each article.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/articles'
+        500:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Can't load articles"
+components:
+  schemas:
+    articles:
+      type: object
+      properties:
+        articles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: '63edd94b69e3e347dc413e48'
+              category: 
+                type: string
+                example: 'Diet'
+              description: 
+                type: string
+                example: 'Some facts about diets'
+              title:
+                type: string
+                example: 'List of diets'
+              content:
+                type: string
+                example: 'Some detailed facts about diets'
+              publish_date:
+                type: string
+                example: '2023-02-03T15:49:27.235Z'
+              
+          
+          

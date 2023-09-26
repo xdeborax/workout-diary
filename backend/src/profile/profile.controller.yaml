@@ -1,0 +1,62 @@
+paths:
+  /api/users:
+    patch:
+      summary: 'Update user'
+      tags:
+        - api
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: 'Object which contains user name and/or password'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/profile-update'
+             
+      responses:
+        200:
+          description: 'Object which contains keys and values of the updated user data'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updated-user'
+        400:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'A field is required.'
+components:
+  schemas:
+    profile-update:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'Doe'
+        password:
+          type: string
+          example: 'password123'
+    updated-user:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '63edd94b69e3e347dc413e48'
+        name:
+          type: string
+          example: 'Doe'
+        email:
+          type: string
+          example: 'doe@test.com'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+        

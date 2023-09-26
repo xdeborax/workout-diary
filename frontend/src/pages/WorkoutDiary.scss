@@ -1,0 +1,95 @@
+.dataFrame {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 3px;
+    margin: auto;
+
+    .input-field {
+        border-radius: 3px;
+    }
+
+    .listRadioButton {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .calendarRadioButton {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
+.pageTitle {
+    color: black;
+    font-weight: 500;
+    font-size: 2.1rem;
+    font-family: 'Amiri', serif;
+}
+
+.workoutElement {
+    margin: 0;
+    margin-top: 1.5rem;
+}
+
+.workoutHeader {
+    border-top: solid 1px rgb(170, 170, 170);
+    padding-top: 10px;
+}
+
+.card-header {
+    background-color: #d0d0d08f;
+    height: 35px;
+}
+
+.pieChart {
+    width: 300px;
+}
+
+.tabTitle {
+    display: inline-block;
+    padding-bottom: 5px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.react-tabs__tab--selected {
+    border-bottom: solid 3px rgb(65, 125, 156);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    outline: 0;
+}
+
+.react-tabs__tab-list {
+    border-bottom: none;
+    margin: 0 0 10px;
+    padding-bottom: 20px;
+}
+
+.deleteEditButton {
+    width: 45px;
+}
+
+.btn-outline-primary {
+    --bs-btn-hover-bg: rgb(65, 125, 156);
+    --bs-btn-active-bg: rgb(65, 125, 156);
+}
+
+.rbc-toolbar-label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: right;
+}
+
+.rbc-month-view {
+    background-color: white;
+
+    .rbc-month-header {
+        background-color: #9b9b9b;
+        color: whitesmoke;
+    }
+}

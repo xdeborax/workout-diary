@@ -1,0 +1,46 @@
+paths:
+  /api/login:
+    post:
+      summary: 'Login user'
+      tags:
+        - api
+      requestBody:
+        description: 'Object which contains user email address and password'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/login-form'
+             
+      responses:
+        200:
+          description: 'Object which contains a JWT token'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ'
+        400:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'All fields are required.'
+components:
+  schemas:
+    login-form:
+      type: object
+      properties:
+        email:
+          type: string
+          example: 'johndoe@test.com'
+        password:
+          type: string
+          example: 'password123'

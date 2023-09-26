@@ -1,0 +1,289 @@
+paths:
+  /api/diaries:
+    post:
+      summary: 'Add new workout to diary'
+      tags:
+        - api
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: 'Object which contains the details of the new workout.'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/add-workout'
+      responses:
+        200:
+          description: 'Object with keys "id" and "workouts" that has an array as value, which contains an object for each workout including the new one.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/diary'
+        400:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Addition of sport type is required'
+    get:
+      summary: 'Get workouts of the user'
+      tags:
+        - api
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: 'Object with keys "id" and "workouts" that has an array as value, which contains an object for each workout.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/diary'
+        401:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      status: 
+                        type: 'string'
+                        example: 'error'
+                      message:
+                        type: 'string'
+                        example: 'Invalid token'
+    patch:
+      summary: 'Remove workout from diary'
+      tags:
+        - api
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: 'Object which contains the ID of workout to remove'
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                workoutId:
+                  type: string
+                  example: '642e9c99e31761dc4ec3dab9'
+      responses:
+        200:
+          description: 'Object with keys "id" and "workouts" that has an array as value, which contains an object for each workout except the removed one.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/diary'
+        400:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Workout doesn't exist"
+  /api/diaries/{workoutId}:
+    patch:
+      summary: 'Edit workout in diary'
+      parameters:
+        - in: path
+          name: workoutId
+          schema:
+            type: string
+            example: '63edd94b69e3e347dc413e48'
+          required: true
+          description: 'ID of the workout to edit'
+      tags:
+        - api
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: 'Object which contains the edited values of the workout'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/edit-workout'
+      responses:
+        200:
+          description: 'Object with keys "id" and "workouts" that has an array as value, which contains an object for each workout except the removed one.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/edited-diary'
+        400:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Workout doesn't exist"
+components:
+  schemas:
+    add-workout:
+      type: object
+      properties:
+        sportType:
+          type: string
+          example: 'Futás'
+        workoutName:
+          type: string
+          example: 'tempó futás'
+        date:
+          type: Date
+          example: '2023-03-16T00:00:00.000Z'
+        duration:
+          type: number
+          example: 1
+        distance:
+          type: number
+          example: 5
+        durationUnit:
+          type: string
+          example: 'óra'
+        distanceUnit:
+          type: string
+          example: 'km'
+        note:
+          type: string
+          example: 'megjegyzés'
+        isDone:
+          type: boolean
+          example: true
+    diary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '34021k2hc2ae7alu2e268843'
+        workouts:
+          type: array
+          items:
+            type: object
+            properties:
+              id: 
+                type: string
+                example: '63edd94b69e3e347dc413e48'
+              sportType:
+                type: string
+                example: 'Futás'
+              workoutName:
+                type: string
+                example: 'tempó futás'
+              date:
+                type: Date
+                example: '2023-03-16T00:00:00.000Z'
+              duration:
+                type: number
+                example: 1
+              distance:
+                type: number
+                example: 5
+              durationUnit:
+                type: string
+                example: 'óra'
+              distanceUnit:
+                type: string
+                example: 'km'
+              note:
+                type: string
+                example: 'megjegyzés'
+              exercises: 
+                type: array
+                example: []
+              isDone:
+                type: boolean
+                example: true
+    edit-workout:
+      type: object
+      properties:
+        sportType:
+          type: string
+          example: 'Futás'
+        workoutName:
+          type: string
+          example: 'lassú futás'
+        date:
+          type: Date
+          example: '2023-03-16T00:00:00.000Z'
+        duration:
+          type: number
+          example: 1
+        distance:
+          type: number
+          example: 3
+        durationUnit:
+          type: string
+          example: 'óra'
+        distanceUnit:
+          type: string
+          example: 'km'
+        note:
+          type: string
+          example: 'megjegyzés'
+        isDone:
+          type: boolean
+          example: true
+    edited-diary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '34021k2hc2ae7alu2e268843'
+        workouts:
+          type: array
+          items:
+            type: object
+            properties:
+              id: 
+                type: string
+                example: '63edd94b69e3e347dc413e48'
+              sportType:
+                type: string
+                example: 'Futás'
+              workoutName:
+                type: string
+                example: 'lassú futás'
+              date:
+                type: Date
+                example: '2023-03-16T00:00:00.000Z'
+              duration:
+                type: number
+                example: 1
+              distance:
+                type: number
+                example: 3
+              durationUnit:
+                type: string
+                example: 'óra'
+              distanceUnit:
+                type: string
+                example: 'km'
+              note:
+                type: string
+                example: 'megjegyzés'
+              exercises: 
+                type: array
+                example: []
+              isDone:
+                type: boolean
+                example: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

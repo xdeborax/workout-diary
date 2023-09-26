@@ -1,0 +1,43 @@
+#workoutForm {
+    width: 600px;
+    background-color: rgba(255, 255, 255, 0.855);
+
+    .input-field {
+        border: 1px solid rgba(225, 224, 224, 0.634);
+        border-bottom: 2px solid #6096B4;
+        border-radius: 3px;
+
+        &:hover {
+            border-color: #6c757d;
+        }
+    }
+}
+
+.strengthFormTable {
+    width: 390px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.exerciseNameInput {
+    width: 100px;
+    border-radius: 0;
+}
+
+.exerciseNumberInput {
+    width: 70px;
+    border-radius: 0;
+}
+
+@media only screen and (max-width: 520px) {
+    .strengthFormTable {
+        width: 300px;
+    }
+
+    #workoutForm {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+}
+

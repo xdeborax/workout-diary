@@ -1,0 +1,26 @@
+$primary: rgb(65, 125, 156);
+
+@import 'bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+body {
+  font-family: 'Dosis', sans-serif;
+  background-color: whitesmoke
+}
+
+.main-content {
+  min-height: 92vh;
+}
+
+.welcomeWallpaper {
+  background-image: url('mainwallpaper.jpeg');
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+  margin: auto;
+  background-attachment: fixed;
+}

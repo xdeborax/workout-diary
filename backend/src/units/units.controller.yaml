@@ -1,0 +1,57 @@
+paths:
+  /api/units:
+    get:
+      summary: 'Get all unit data'
+      tags:
+        - api
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: 'Object with key "units" that has an array as value, which contains an object for each unit.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/units'
+        401:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      status: 
+                        type: 'string'
+                        example: 'error'
+                      message:
+                        type: 'string'
+                        example: 'Invalid token'
+components:
+  schemas:
+    units:
+      type: object
+      properties:
+        units:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: '63edd94b69e3e347dc413e48'
+              unitName:
+                type: string
+                example: 'időtartam'
+              unitValue:
+                type: array
+                example: ['perc', 'óra']
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+          
+          

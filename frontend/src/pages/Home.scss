@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@1,800&display=swap');
+
+.homeText {
+    color: rgb(255, 255, 255);
+    font-family: 'Allura', cursive;
+    padding: 200px 30px;
+    font-size: 6rem;
+    letter-spacing: 1rem;
+    text-shadow: 2px 2px #403f3f;
+}
+
+@media only screen and (max-width: 600px) {
+    .homeText {
+        font-size: 2.5rem;
+        padding: 100px 30px;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width:760px) {
+    .homeText {
+        font-size: 4rem;
+        padding: 200px 30px;
+    }
+}
+
+@media screen and (min-width:760px) and (max-width:992px) {
+    .homeText {
+        font-size: 4rem;
+        padding: 200px 30px;
+    }
+}

@@ -1,0 +1,57 @@
+paths:
+  /api/register:
+    post:
+      summary: 'Register user'
+      tags:
+        - api
+      requestBody:
+        description: 'Object which contains user name, email address and password'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/register-form'
+             
+      responses:
+        200:
+          description: 'Object which contains keys and values of the registered user data'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registered-user'
+        400:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Name, email and password are required.'
+components:
+  schemas:
+    register-form:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'John Doe'
+        email:
+          type: string
+          example: 'johndoe@test.com'
+        password:
+          type: string
+          example: 'password123'
+    registered-user:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'John Doe'
+        email:
+          type: string
+          example: 'johndoe@test.com'
+        id:
+          type: string
+          example: '640ed9f9e6e8f73fb4963a2b'

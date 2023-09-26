@@ -1,0 +1,150 @@
+paths:
+  /api/sports:
+    get:
+      summary: 'Get all sport type data'
+      tags:
+        - api
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: 'Object with key "sportTypes" that has an array as value, which contains an object for each sport type.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sport-types'
+        401:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      status: 
+                        type: 'string'
+                        example: 'error'
+                      message:
+                        type: 'string'
+                        example: 'Invalid token'
+  /api/admin/sports:
+    post:
+      summary: 'Add new sport type as admin'
+      tags:
+        - api
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: 'Object which contains specific keys (type, hasPropDistance, hasPropexercises) and their values'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/add-sport-type'
+             
+      responses:
+        200:
+          description: 'Object which contains keys and values of the new sport type data'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/new-sport-type'
+        400:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Type, hasPropDistance, hasPropExercises are required'
+  /api/admin/sports/{sportTypeId}:
+    delete:
+      summary: 'Delete sport type as admin'
+      parameters:
+        - in: path
+          name: sportTypeId
+          schema:
+            type: string
+            example: '63ea43d5125ae266b2bf6c97'
+          required: true
+          description: ID of the sport type to delete
+      tags:
+        - api
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: 'The sport type is deleted successfully'
+        400:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Sport type doesn't exist."
+components:
+  schemas:
+    sport-types:
+      type: object
+      properties:
+        sportTypes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: '63edd94b69e3e347dc413e48'
+              type:
+                type: string
+                example: 'Futás'
+              hasPropDistance:
+                type: boolean
+                example: true
+              hasPropExercises:
+                type: boolean
+                example: false
+    add-sport-type:
+      type: object
+      properties:
+        type:
+          type: string
+          example: 'Futás'
+        hasPropDistance:
+          type: boolean
+          example: true
+        hasPropExercises:
+          type: boolean
+          example: false
+    new-sport-type:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '34021k2hc2ae7alu2e268843'
+        type:
+          type: string
+          example: 'Futás'
+        hasPropDistance:
+          type: boolean
+          example: true
+        hasPropExercises:
+          type: boolean
+          example: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+        
+              
+          
+          
